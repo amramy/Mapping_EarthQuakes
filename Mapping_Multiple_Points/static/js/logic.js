@@ -22,23 +22,54 @@ let map = L.map('mapid').setView([40.7, -94.5], 4);
 //     zoom: 4
 //   });
 
-//add a single marker to the map
-let marker = L.marker([34.0522, -118.2437]).addTo(map);
+// //add a single marker to the map
+// let marker = L.marker([34.0522, -118.2437]).addTo(map);
 
-// change marker to a circle (circle area is measured in meaters)
-L.circle([34.0522, -118.2437], {
-    radius: 100
- }).addTo(map);
+// // change marker to a circle (circle area is measured in meaters)
+// L.circle([34.0522, -118.2437], {
+//     radius: 100
+//  }).addTo(map);
 
- // ALTERNATIVE circle with cirleMarker() function
- L.circleMarker([34.0522, -118.2437]).addTo(map);
+//  // ALTERNATIVE circle with cirleMarker() function
+//  L.circleMarker([34.0522, -118.2437]).addTo(map);
 
- // ADD CIRCLE with COLOR
- L.circleMarker([34.0522, -118.2437],{
-    radius: 300,
-    color: "black",
-    fillColor: '#ffffa1'
- }).addTo(map);
+//  // ADD CIRCLE with COLOR
+//  L.circleMarker([34.0522, -118.2437],{
+//     radius: 300,
+//     color: "black",
+//     fillColor: '#ffffa1'
+//  }).addTo(map);
+
+// Retrive DATA from cities.js folder 
+// notice data variable name is "cities"
+let cityData = cities;
+
+
+// itterate through the data to add Marker for each location, add to map
+
+//for (let i = 0; i < cities.length; i++)
+
+//OR 
+
+cityData.forEach(function(city){
+    console.log(city)
+    //L.marker(city.location)  // change marker to circleMarker() representing population
+    L.circleMarker(city.location, {
+        radius: city.population/200000,
+        color: "orange",
+        weight: 4,
+    })
+    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+    .addTo(map);
+});
+//in forEach() function assign city variable to each object of cities.js file
+// retrive coordinates with "city" variable and "location" value
+// add .bindPopup with HTML text calling dataset "city", value ".city", value ".state", value ".population"
+// add comma seperator to population number using .toLocaleString() function 
+//(!! OPPS RAdius is too large) divide the city.population value by "100,000"
+// set color to orange, with lineWeight of 4
+// add.To(map);
+
 
 // add a tileLayer... read tile usage policy @ leafletjs.com
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
