@@ -1,3 +1,4 @@
+
 // Add console.log to check to see if our code is working.
 console.log("working");
 
@@ -177,3 +178,49 @@ streets.addTo(map);
 // L.map('map')
 //   .setView([38.8929, -77.0252], 14)
 //   .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v12'));
+
+
+
+// Features OBJECt
+// {
+//     type: "Feature",
+//     properties: {
+//     mag: 1.88,
+//     place: "6km SE of Pahala, Hawaii",
+//     time: 1573766377230,
+//     type: "earthquake",
+//     title: "M 1.9 - 6km SE of Pahala, Hawaii"
+//     },
+//     geometry: {
+//     type: "Point",
+//     coordinates: [
+//     -155.4329987,
+//     19.1634998
+//     ]},
+//   }
+
+ 
+ 
+ // featureCollection Object 
+//   {"type":"FeatureCollection","features":
+// [
+//   {
+//     "type":"Feature","properties":{
+// "airline":"AA","airline_id":"24","src":"LAX","dst":"ABQ","dst_id":"4019","stops":"0","equipment":"CRJ CR7"},"geometry":{
+// "type":"LineString",
+// "coordinates":[[-118.4079971,33.94250107],[-106.609001,35.040199]]}
+// },
+// {
+// "type":"Feature","properties":{
+// "airline":"AA","airline_id":"24","src":"LAX","src_id":"3484","dst":"ANC","dst_id":"3774","codeshare":"Y","stops":"0","equipment":"737"},"geometry":{
+// "type":"LineString",
+// "coordinates":[[-118.4079971,33.94250107],[-149.99600219726562,61.174400329589844]]}
+//   },
+// {
+//   "type":"Feature","properties":{
+// "airline":"AA","airline_id":"24","src":"LAX","src_id":"3484","dst":"AUS","dst_id":"3673","codeshare":"","stops":"0","equipment":"M83 738"},"geometry":{
+// "type":"LineString",
+// "coordinates":[[-118.4079971,33.94250107],[-97.6698989868164,30.194499969482422]]}
+//   }
+// ]
+//}
