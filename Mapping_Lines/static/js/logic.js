@@ -9,7 +9,14 @@ console.log("working");
     // second is longitude (-94.5) 
     // Third set the zoom level of "4" on scale of 0-18
 
-let map = L.map('mapid').setView([40.7, -94.5], 4);
+//let map = L.map('mapid').setView([40.7, -94.5], 4);
+
+// Change the cordinates to somewhere between LAS and SFO airport with zoom of 7
+//let map = L.map('mapid').setView([36.1733, -120.1794], 7);
+
+// Change the center to San Francisco with zoom 5 
+let map = L.map('mapid').setView([37.6214, -122.3790], 5);
+
 
 // alternative to setView() is to modify each attribute in map object with {}
 // example -Create the map object with a center and zoom level.
@@ -21,6 +28,41 @@ let map = L.map('mapid').setView([40.7, -94.5], 4);
 //     ],
 //     zoom: 4
 //   });
+
+// ADDING LINES: require coordinates for start/ end point as one-dimensional ARRAY with two elements! (lat & LONG)
+// Assign the ARRAY to "line" variable
+
+// let line = [
+//     [33.9416, -118.4085],
+//     [37.6214, -122.3790]
+// ];
+ 
+// ADD MORE POINT TO PREVIOUS LINE: 
+let line = [
+    [33.9416, -118.4085],
+    [37.6214, -122.3790],
+    [40.7899, -111.9791],
+    [47.4502, -122.3088]
+];
+//CREATE PLOYLINE: using coordinates and color then addTo map
+// L.polyline(line, {
+//     color: "red"
+// }).addTo(map);
+
+// Change color to yellow
+// L.polyline(line, {
+//     color: "yellow"
+// }).addTo(map);
+
+//Make line blue with dashes, opacity 0.5, weight of 4 
+L.polyline(line, {
+    color: "blue",
+    dashArray: '10,20',
+    weight: 4,
+    opacity: 0.5, 
+    lineCap: 'square'
+}).addTo(map);
+
 
 // //add a single marker to the map
 // let marker = L.marker([34.0522, -118.2437]).addTo(map);
@@ -110,15 +152,25 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // streets.addTo(map);
 
 // // We create the DARK tile layer that will be the background of our map.
+// let streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+//     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+//     maxZoom: 14,
+//     id: 'mapbox/dark-v10',
+//     tileSize: 512,
+//     zoomOffset: -1,
+//     accessToken: API_KEY
+// });
+
+// Change view to satellite-street-v11
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 14,
-    id: 'mapbox/dark-v10',
+    id: 'mapbox/satellite-streets-v11',
     tileSize: 512,
     zoomOffset: -1,
     accessToken: API_KEY
 });
-// Then we add our 'dark tile layer to the map.
+// Then we add our streets (dark) tile layer to the map.
 streets.addTo(map);
 
 // https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/1/1/0?access_token=pk.eyJ1IjoiYW1yLWFteSIsImEiOiJjbGNwNTVmeDMxajV3M3BwOHE5OTg5eTlnIn0.uXvvt45BKNnFSbDK84Z3vA
