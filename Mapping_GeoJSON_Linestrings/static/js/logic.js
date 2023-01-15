@@ -70,25 +70,35 @@ console.log("working");
 // }).addTo(map);
 
 // Accessing the airport GeoJSON URL that is the file in GitHub
-let airportData = "https://raw.githubusercontent.com/amramy/Mapping_EarthQuakes/main/majorAirports.json";
+//let airportData = "https://raw.githubusercontent.com/amramy/Mapping_EarthQuakes/main/majorAirports.json";
 
-// Grabbing oru GeoJSON Data 
-d3.json(airportData).then(function(data) {
+let torontoData = "https://raw.githubusercontent.com/amramy/Mapping_EarthQuakes/Mapping_GeoJSON_Linestrings/torontoRoutes.json";
+
+// create a style for the lines
+let myStyle = {
+    color: "#ffffa1",
+    weight:2
+}
+// Grabbing our GeoJSON Data 
+d3.json(torontoData).then(function(data) {
     console.log(data);
     // Create a GeoJSON layer with the retrived data. 
     L.geoJSON(data, {
+        // color: "#ffffa1",  (abve we created myStyle variable)
+        // weight: 2, 
+        style: myStyle,
         onEachFeature: function(feature, layer) {
             console.log(layer);
-            layer.bindPopup("<h2> Airport Code: " + feature.properties.id + "</h2> <hr> <h3> Airport Name: " + feature.properties.name + "</h3>");
+            layer.bindPopup("<h2> Airline: " + feature.properties.airline + "</h2> <hr> <h3> Destination: " + feature.properties.dst + "</h3>");
         }
     }).addTo(map);
 });
 
 // Change view to -street-v11
-let streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let light = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 14,
-    id: 'mapbox/streets-v10',
+    id: 'mapbox/light-v10',
     tileSize: 512,
     zoomOffset: -1,
     accessToken: API_KEY
@@ -110,15 +120,15 @@ let dark = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?
 
 // Create a base layer that holds both maps
 let baseMaps = {
-    Street : streets, 
+    Light : light, 
     Dark: dark
 }
 
 // USE the alternative to setView so we can modify each attribute using {} notation
 let map = L.map("mapid", {
-    center: [40.7, -94.5],
-    zoom: 4,
-    layers: [streets, dark]
+    center: [44.0, -80.0],
+    zoom: 2,
+    layers: [dark, light],
 });
 
 // Pass our map layers into our layers control and add the layers control to the map. 
