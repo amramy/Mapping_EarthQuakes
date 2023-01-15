@@ -53,24 +53,26 @@ console.log("working");
 // Accessing the airport GeoJSON URL that is the file in GitHub
 //let airportData = "https://raw.githubusercontent.com/amramy/Mapping_EarthQuakes/main/majorAirports.json";
 
-let torontoData = "https://raw.githubusercontent.com/amramy/Mapping_EarthQuakes/Mapping_GeoJSON_Linestrings/torontoRoutes.json";
+let torontoHoods = "https://raw.githubusercontent.com/amramy/Mapping_EarthQuakes/Mapping_GeoJSON_Polygons/torontoNeighborhoods.json";
 
 // create a style for the lines
-let myStyle = {
-    color: "#ffffa1",
-    weight:2
-}
+// let myStyle = {
+//     color: "blue",
+//     weight:1
+// }
+
 // Grabbing our GeoJSON Data 
-d3.json(torontoData).then(function(data) {
+d3.json(torontoHoods).then(function(data) {
     console.log(data);
     // Create a GeoJSON layer with the retrived data. 
     L.geoJSON(data, {
-        // color: "#ffffa1",  (abve we created myStyle variable)
-        // weight: 2, 
-        style: myStyle,
+        color: "purple",  
+        weight: 1, 
+        fillColor: "aqua",
+        // style: myStyle,
         onEachFeature: function(feature, layer) {
             console.log(layer);
-            layer.bindPopup("<h2> Airline: " + feature.properties.airline + "</h2> <hr> <h3> Destination: " + feature.properties.dst + "</h3>");
+            layer.bindPopup("<h2> Area Name: " + feature.properties.AREA_NAME + "</h2>");
         }
     }).addTo(map);
 });
@@ -79,7 +81,7 @@ d3.json(torontoData).then(function(data) {
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 14,
-    id: 'mapbox/street-v11',
+    id: 'mapbox/streets-v10',
     tileSize: 512,
     zoomOffset: -1,
     accessToken: API_KEY
@@ -109,7 +111,7 @@ let baseMaps = {
 let map = L.map("mapid", {
     center: [43.7, -79.3],
     zoom: 11,
-    layers: [satelliteStreets]
+    layers: [streets]
 });
 
 // Pass our map layers into our layers control and add the layers control to the map. 
