@@ -38,8 +38,9 @@ Tools and Technologies used:
 * JavaScript
 * CSS
 * HTML
+* Leaflet
 * GeoJSON
-* D3js
+* D3JSON
 * API
 * OpenStreeMap.org
 * Mapbox.com
