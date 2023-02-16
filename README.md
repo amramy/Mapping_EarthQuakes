@@ -32,3 +32,14 @@ Upon upload this first map is the map you will see.
 
 ### Conclusion: 
 The user can view the map with any combination of the three base layers and the three over layers to see the earthquakes, major earthquakes, and plate tectonics of the world in the last seven days. 
+
+*****
+Tools and Technologies used: 
+* JavaScript
+* CSS
+* HTML
+* GeoJSON
+* D3js
+* API
+* OpenStreeMap.org
+* Mapbox.com
